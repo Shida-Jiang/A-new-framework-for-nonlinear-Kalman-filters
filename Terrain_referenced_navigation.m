@@ -172,8 +172,11 @@ h5_1=plot(10.^scale, xplotIEKF_1*1000, '--d', 'DisplayName', "IEKF", 'Color', '#
 %h6_1=plot(10.^scale, xplotIEKF2_1*1000, '--v', 'Color', "#A2142F",'LineWidth',1);
 set(gca, 'XScale', 'log', 'YScale', 'log', 'XTickLabel', [],'FontSize', 12)
 %xlabel('Measurement noise (per unit)',FontSize=11)
-ylabel('Abscissa RMSE (m)',FontSize=13)
-%legend([h1_1 h2_1 h3_1 h4_1 h5_1], 'Location','southeast',FontSize=11)
+ylabel('X-axis position RMSE (m)',FontSize=12)
+h1_1=plot(nan, nan, '--', 'Color', 'k', 'DisplayName', 'Old framework','LineWidth',1);
+h2_1=plot(nan, nan, 'Color', "k", 'DisplayName', 'New framework','LineWidth',1);
+leg=legend([h1_1 h2_1], 'Location','southeast',FontSize=11);
+title(leg,'Line styles')
 ylim([0.01 1000])
 set(gca, 'YTick', [0.01 0.1 1 10 100 1000]);
 xlim([10^-1 10^4])
@@ -198,14 +201,15 @@ h3_1=plot(nan, nan, '^', 'Color', "#EDB120", 'DisplayName', 'UKF','LineWidth',1)
 h4_1=plot(nan, nan, 'x', 'Color', "#7E2F8E", 'DisplayName', 'CKF','LineWidth',1);
 h5_1=plot(nan, nan, 'd', 'Color', "#4DBEEE", 'DisplayName', 'IEKF','LineWidth',1);
 set(gca, 'XScale', 'log', 'YScale', 'log','FontSize', 12)
-xlabel('Measurement standard deviation (m)',FontSize=13)
-ylabel('Ordinate RMSE (m)',FontSize=13)
-legend([h1_1 h2_1 h3_1 h4_1 h5_1], 'Location','southeast',FontSize=11)
-ylim([0.1 2000])
+xlabel('Measurement standard deviation (m)',FontSize=12)
+ylabel('Y-axis position RMSE (m)',FontSize=12)
+leg=legend([h1_1 h2_1 h3_1 h4_1 h5_1], 'Location','southeast','NumColumns',2,FontSize=11);
+title(leg,'Line colors')
+ylim([0.1 1000])
 xlim([10^-1 10^4])
 set(gca, 'YTick', [0.1 1 10 100 1000]);
 grid on
-% exportgraphics(f1,'Terrain-referenced-navigation.png','Resolution',900)
+exportgraphics(f1,'Terrain-referenced-navigation.png','Resolution',900)
 
 %%
 % figure
@@ -222,7 +226,7 @@ grid on
 % h6_1=plot(10.^scale, xplotIEKF2_1*1000, '--v', 'Color', "#A2142F",'LineWidth',1);
 % set(gca, 'XScale', 'log', 'YScale', 'log', 'XTickLabel', [],'FontSize', 12)
 % %xlabel('Measurement noise (per unit)',FontSize=11)
-% ylabel('Abscissa RMSE (m)',FontSize=13)
+% ylabel('Abscissa RMSE (m)',FontSize=12)
 % %legend([h1_2 h2_2 h3_2 h4_2], 'Location','southeast',FontSize=12)
 % ylim([1 2000])
 % set(gca, 'YTick', [1 10 100 1000]);
@@ -239,8 +243,8 @@ grid on
 % h6_2=plot(10.^scale, yplotIEKF2_2*1000, '-v', 'DisplayName', "IEKF2", 'Color', "#A2142F",'LineWidth',1);
 % h6_1=plot(10.^scale, yplotIEKF2_1*1000, '--v', 'Color', "#A2142F",'LineWidth',1);
 % set(gca, 'XScale', 'log', 'YScale', 'log','FontSize', 12)
-% xlabel('Measurement standard deviation (m)',FontSize=13)
-% ylabel('Ordinate RMSE (m)',FontSize=13)
+% xlabel('Measurement standard deviation (m)',FontSize=12)
+% ylabel('Ordinate RMSE (m)',FontSize=12)
 % legend([h1_2 h2_2 h5_2 h6_2], 'Location','southeast',FontSize=12)
 % ylim([0.1 2000])
 % xlim([10^-1 10^4])

@@ -215,13 +215,16 @@ h5_1=plot(10.^scale, xplotIEKF_1, '--d', 'DisplayName', 'IEKF', 'Color', "#4DBEE
 %h6_2=plot(10.^scale, xplotIEKF2_2, '-v', 'DisplayName', "IEKF2", 'Color', "#A2142F",'LineWidth',1);
 %h6_1=plot(10.^scale, xplotIEKF2_1, '--v', 'Color', "#A2142F",'LineWidth',1);
 set(gca, 'XScale', 'log', 'YScale', 'log', 'XTickLabel', [],'FontSize', 12)
-%xlabel('Measurement noise (per unit)',FontSize=13)
-ylabel('Abscissa RMSE (m)',FontSize=13)
+%xlabel('Measurement noise (per unit)',FontSize=12)
+ylabel('X-axis position RMSE (m)',FontSize=12)
 ylim([10^-3 11])
 xlim([10^-4 100])
 set(gca, 'YTick', [0.001 0.01 0.1 1 10 100]);
 set(gca, 'XTick', [0.0001 0.001 0.01 0.1 1 10]);
-%legend([h1_1 h2_1 h3_1 h4_1 h5_1], 'Location','southeast',FontSize=11)
+h1_1=plot(nan, nan, '--', 'Color', 'k', 'DisplayName', 'Old framework','LineWidth',1);
+h2_1=plot(nan, nan, 'Color', "k", 'DisplayName', 'New framework','LineWidth',1);
+leg=legend([h1_1 h2_1], 'Location','southeast',FontSize=11);
+title(leg,'Line styles')
 grid on
 nexttile
 hold on
@@ -243,13 +246,14 @@ h3_1=plot(nan, nan, '^', 'Color', "#EDB120", 'DisplayName', 'UKF','LineWidth',1)
 h4_1=plot(nan, nan, 'x', 'Color', "#7E2F8E", 'DisplayName', 'CKF','LineWidth',1);
 h5_1=plot(nan, nan, 'd', 'Color', "#4DBEEE", 'DisplayName', 'IEKF','LineWidth',1);
 set(gca, 'XScale', 'log', 'YScale', 'log','FontSize', 12)
-xlabel('Measurement standard deviations (m)',FontSize=13)
-ylabel('X-axis speed RMSE (m/s)',FontSize=13)
+xlabel('Measurement standard deviations (m)',FontSize=12)
+ylabel('X-axis speed RMSE (m/s)',FontSize=12)
 ylim([10^-4 1.5])
 xlim([10^-4 100])
 set(gca, 'XTick', [0.0001 0.001 0.01 0.1 1 10 100]);
 set(gca, 'YTick', [0.0001 0.001 0.01 0.1 1 10]);
-legend([h1_1 h2_1 h3_1 h4_1 h5_1], 'Location','southeast',FontSize=11)
+leg=legend([h1_1 h2_1 h3_1 h4_1 h5_1], 'Location','southeast','NumColumns',2,FontSize=11);
+title(leg,'Line colors')
 grid on
 %exportgraphics(f1,'3D-tracking.png','Resolution',900)
 %%
@@ -267,11 +271,14 @@ h4_2=plot(0:1:len-1, x_CKF_2, '-x', 'DisplayName', "CKF", 'Color', "#7E2F8E",'Li
 h4_1=plot(0:1:len-1, x_CKF_1, '--x', 'DisplayName', 'CKF (old)', 'Color', "#7E2F8E",'LineWidth',1);
 h5_1=plot(0:1:len-1, x_IEKF_1, '--d', 'DisplayName', 'IEKF', 'Color', "#4DBEEE",'LineWidth',1);
 set(gca, 'YScale', 'log', 'XTickLabel', [],'FontSize', 12)
-ylabel('Abscissa RMSE (m)',FontSize=13)
+ylabel('X-axis position RMSE (m)',FontSize=12)
 ylim([10^-3 25])
 set(gca, 'YTick', [0.001 0.01 0.1 1 10]);
 %set(gca, 'XTick', [0.0001 0.001 0.01 0.1 1 10]);
-%legend([h1_1 h2_1 h3_1 h4_1 h5_1], 'Location','southwest',FontSize=11)
+h1_1=plot(nan, nan, '--', 'Color', 'k', 'DisplayName', 'Old framework','LineWidth',1);
+h2_1=plot(nan, nan, 'Color', "k", 'DisplayName', 'New framework','LineWidth',1);
+leg=legend([h1_1 h2_1], 'Location','southwest',FontSize=11);
+title(leg,'Line styles')
 grid on
 nexttile
 hold on
@@ -290,12 +297,13 @@ h3_1=plot(nan, nan, '^', 'Color', "#EDB120", 'DisplayName', 'UKF','LineWidth',1)
 h4_1=plot(nan, nan, 'x', 'Color', "#7E2F8E", 'DisplayName', 'CKF','LineWidth',1);
 h5_1=plot(nan, nan, 'd', 'Color', "#4DBEEE", 'DisplayName', 'IEKF','LineWidth',1);
 set(gca, 'YScale', 'log','FontSize', 12)
-xlabel('Iterations',FontSize=13)
-ylabel('X-axis speed RMSE (m/s)',FontSize=13)
+xlabel('Iterations',FontSize=12)
+ylabel('X-axis speed RMSE (m/s)',FontSize=12)
 ylim([10^-4 1.7])
 %set(gca, 'XTick', [0.0001 0.001 0.01 0.1 1 10 100]);
 set(gca, 'YTick', [0.0001 0.001 0.01 0.1 1 10]);
-legend([h1_1 h2_1 h3_1 h4_1 h5_1], 'Location','southwest',FontSize=11)
+leg=legend([h1_1 h2_1 h3_1 h4_1 h5_1], 'Location','southwest','NumColumns',5,FontSize=11);
+title(leg,'Line colors')
 grid on
 %exportgraphics(f4,'3D-tracking-convergence.png','Resolution',900)
 %%
@@ -312,8 +320,8 @@ grid on
 % h6_2=plot(10.^scale, xplotIEKF2_2, '-v', 'DisplayName', "IEKF2", 'Color', "#A2142F",'LineWidth',1);
 % h6_1=plot(10.^scale, xplotIEKF2_1, '--v', 'Color', "#A2142F",'LineWidth',1);
 % set(gca, 'XScale', 'log', 'YScale', 'log', 'XTickLabel', [],'FontSize', 12)
-% %xlabel('Measurement noise (per unit)',FontSize=13)
-% ylabel('Abscissa RMSE (m)',FontSize=13)
+% %xlabel('Measurement noise (per unit)',FontSize=12)
+% ylabel('X-axis position RMSE (m)',FontSize=12)
 % ylim([10^-3 10])
 % xlim([10^-4 100])
 % set(gca, 'YTick', [0.001 0.01 0.1 1 10 100]);
@@ -331,8 +339,8 @@ grid on
 % h6_2=plot(10.^scale, vxplotIEKF2_2, '-v', 'DisplayName', "IEKF2", 'Color', "#A2142F",'LineWidth',1);
 % h6_1=plot(10.^scale, vxplotIEKF2_1, '--v', 'Color', "#A2142F",'LineWidth',1);
 % set(gca, 'XScale', 'log', 'YScale', 'log','FontSize', 12)
-% xlabel('Measurement standard deviations (m)',FontSize=13)
-% ylabel('X-axis speed RMSE (m/s)',FontSize=13)
+% xlabel('Measurement standard deviations (m)',FontSize=12)
+% ylabel('X-axis speed RMSE (m/s)',FontSize=12)
 % ylim([10^-4 1.5])
 % xlim([10^-4 100])
 % set(gca, 'XTick', [0.0001 0.001 0.01 0.1 1 10 100]);
@@ -359,13 +367,16 @@ h5_1=plot(10.^scale, xerrorplotIEKF_1, '--d', 'DisplayName', "IEKF", 'Color', "#
 %h6_2=plot(10.^scale, xplotIEKF2_1, '-v', 'DisplayName', "IEKF2", 'Color', "#A2142F",'LineWidth',1);
 %h6_1=plot(10.^scale, xerrorplotIEKF2_1, '--v', 'Color', "#A2142F",'LineWidth',1);
 set(gca, 'XScale', 'log', 'YScale', 'log', 'XTickLabel', [],'FontSize', 12)
-%xlabel('Measurement noise (per unit)',FontSize=13)
-ylabel('Abscissa RMSE (m)',FontSize=13)
+%xlabel('Measurement noise (per unit)',FontSize=12)
+ylabel('X-axis position RMSE (m)',FontSize=12)
 ylim([10^-3 10.5])
 xlim([10^-4 100])
 set(gca, 'YTick', [0.001 0.01 0.1 1 10 100]);
 set(gca, 'XTick', [0.0001 0.001 0.01 0.1 1 10]);
-%legend([h1_2 h2_2 h3_2 h4_2 h5_2], 'Location','southeast',FontSize=12)
+h1_1=plot(nan, nan, '--', 'Color', 'k', 'DisplayName', 'Estimated RMSE','LineWidth',1);
+h2_1=plot(nan, nan, 'Color', "k", 'DisplayName', 'Actual error','LineWidth',1);
+leg=legend([h1_1 h2_1], 'Location','southeast',FontSize=11);
+title(leg,'Line styles')
 grid on
 nexttile
 hold on
@@ -388,13 +399,14 @@ h3_1=plot(nan, nan, '^', 'Color', "#EDB120", 'DisplayName', 'UKF','LineWidth',1)
 h4_1=plot(nan, nan, 'x', 'Color', "#7E2F8E", 'DisplayName', 'CKF','LineWidth',1);
 h5_1=plot(nan, nan, 'd', 'Color', "#4DBEEE", 'DisplayName', 'IEKF','LineWidth',1);
 set(gca, 'XScale', 'log', 'YScale', 'log','FontSize', 12)
-ylabel('Abscissa RMSE (m)',FontSize=13)
-xlabel('Measurement standard deviations (m)',FontSize=13)
+ylabel('X-axis position RMSE (m)',FontSize=12)
+xlabel('Measurement standard deviations (m)',FontSize=12)
 ylim([10^-3 10.5])
 xlim([10^-4 100])
 set(gca, 'YTick', [0.001 0.01 0.1 1 10 100]);
 set(gca, 'XTick', [0.0001 0.001 0.01 0.1 1 10]);
-legend([h1_1 h2_1 h3_1 h4_1 h5_1], 'Location','southeast',FontSize=12)
+leg=legend([h1_1 h2_1 h3_1 h4_1 h5_1], 'Location','southeast','NumColumns',2,FontSize=11);
+title(leg,'Line colors')
 grid on
 %exportgraphics(f2,'3D-tracking-error.png','Resolution',900)
 %%
@@ -404,7 +416,7 @@ plot(0, 0, 'p', 'MarkerSize', 15, 'MarkerEdgeColor', 'k', 'MarkerFaceColor', 'k'
 plot(p_sensor(1,:), p_sensor(2,:), 'linewidth', 2, 'Color','k','LineStyle','--'); hold on;
 plot(x_true(1,:), x_true(2,:), 'linewidth', 2,'Color','k'); hold on;
 legend({'Sensor 1', 'Sensor 2', 'Target'}, 'fontsize', 12);
-xlabel('Abscissa (m)', 'fontsize', 12); ylabel('Ordinate (m)', 'fontsize', 12);
+xlabel('X-axis position (m)', 'fontsize', 12); ylabel('Y-axis position (m)', 'fontsize', 12);
 xlim([-10 50])
 ylim([-10 50])
 axis equal;

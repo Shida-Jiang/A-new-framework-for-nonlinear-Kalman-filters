@@ -138,13 +138,16 @@ h4_1=plot(noise1_ref*10.^scale, xplotCKF_1*100, '--x', 'DisplayName', "CKF (old)
 %h6_2=plot(noise1_ref*10.^scale, xplotIEKF2_2*100, '-v', 'DisplayName', "IEKF2", 'Color', "#A2142F",'LineWidth',1);
 %h6_1=plot(noise1_ref*10.^scale, xplotIEKF2_1*100, '--v', 'Color', "#A2142F",'LineWidth',1);
 set(gca, 'XScale', 'log', 'YScale', 'log', 'XTickLabel', [],'FontSize', 12)
-%xlabel('Measurement noise (per unit)',FontSize=13)
-ylabel('SOC RMSE (%)',FontSize=13)
+%xlabel('Measurement noise (per unit)',FontSize=12)
+ylabel('SOC RMSE (%)',FontSize=12)
 grid on
 ylim([0.001 10])
 xlim([10^-5 1])
 set(gca, 'YTick', [0.001 0.01 0.1 1 10]);
-%legend([h1_1 h2_1 h3_1 h4_1 h5_1], 'Location','southeast',FontSize=11)
+h1_1=plot(nan, nan, '--', 'Color', 'k', 'DisplayName', 'Old framework','LineWidth',1);
+h2_1=plot(nan, nan, 'Color', "k", 'DisplayName', 'New framework','LineWidth',1);
+leg=legend([h1_1 h2_1], 'Location','southeast',FontSize=11);
+title(leg,'Line styles')
 
 nexttile
 hold on
@@ -166,14 +169,15 @@ h3_1=plot(nan, nan, '^', 'Color', "#EDB120", 'DisplayName', 'UKF','LineWidth',1)
 h4_1=plot(nan, nan, 'x', 'Color', "#7E2F8E", 'DisplayName', 'CKF','LineWidth',1);
 h5_1=plot(nan, nan, 'd', 'Color', "#4DBEEE", 'DisplayName', 'IEKF','LineWidth',1);
 set(gca, 'XScale', 'log', 'YScale', 'log','FontSize', 12)
-xlabel('Measurement standard deviation (V)',FontSize=13)
-ylabel('SOH RMSE (%)',FontSize=13)
-legend([h1_1 h2_1 h3_1 h4_1 h5_1], 'Location','southeast',FontSize=11)
+xlabel('Measurement standard deviation (V)',FontSize=12)
+ylabel('SOH RMSE (%)',FontSize=12)
+leg=legend([h1_1 h2_1 h3_1 h4_1 h5_1], 'Location','southeast','NumColumns',2,FontSize=11);
+title(leg,'Line colors')
 grid on
 ylim([0.1 12])
 set(gca, 'YTick', [0.01 0.1 1 10]);
 xlim([10^-5 1])
-% exportgraphics(f1,'SOC-SOH.png','Resolution',900)
+exportgraphics(f1,'SOC-SOH.png','Resolution',900)
 %%
 % figure
 % f2=tiledlayout(2,1,'TileSpacing','Compact','Padding','Compact');
@@ -188,8 +192,8 @@ xlim([10^-5 1])
 % h6_2=plot(noise1_ref*10.^scale, xplotIEKF2_2*100, '-v', 'DisplayName', "IEKF2", 'Color', "#A2142F",'LineWidth',1);
 % h6_1=plot(noise1_ref*10.^scale, xplotIEKF2_1*100, '--v', 'Color', "#A2142F",'LineWidth',1);
 % set(gca, 'XScale', 'log', 'YScale', 'log', 'XTickLabel', [],'FontSize', 12)
-% %xlabel('Measurement noise (per unit)',FontSize=13)
-% ylabel('SOC RMSE (%)',FontSize=13)
+% %xlabel('Measurement noise (per unit)',FontSize=12)
+% ylabel('SOC RMSE (%)',FontSize=12)
 % grid on
 % ylim([0.001 10])
 % xlim([10^-5 1])
@@ -207,8 +211,8 @@ xlim([10^-5 1])
 % h6_2=plot(noise1_ref*10.^scale, yplotIEKF2_2*100, '-v', 'DisplayName', "IEKF2", 'Color', "#A2142F",'LineWidth',1);
 % h6_1=plot(noise1_ref*10.^scale, yplotIEKF2_1*100, '--v', 'Color', "#A2142F",'LineWidth',1);
 % set(gca, 'XScale', 'log', 'YScale', 'log','FontSize', 12)
-% xlabel('Measurement standard deviation (V)',FontSize=13)
-% ylabel('SOH RMSE (%)',FontSize=13)
+% xlabel('Measurement standard deviation (V)',FontSize=12)
+% ylabel('SOH RMSE (%)',FontSize=12)
 % legend([h1_2 h2_2 h5_2 h6_2], 'Location','southeast',FontSize=12)
 % grid on
 % ylim([0.1 12])

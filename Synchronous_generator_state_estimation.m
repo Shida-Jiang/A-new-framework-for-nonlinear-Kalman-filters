@@ -189,10 +189,14 @@ h5_1=plot(10.^scale, x1plotIEKF_1, '--d', 'DisplayName', "IEKF", 'Color', '#4DBE
 %h6_2=plot(10.^scale, x1plotIEKF2_2, '-v', 'DisplayName', "IEKF2", 'Color', "#A2142F",'LineWidth',1);
 %h6_1=plot(10.^scale, x1plotIEKF2_1, '--v', 'Color', "#A2142F",'LineWidth',1);
 set(gca, 'XScale', 'log', 'YScale', 'log', 'XTickLabel', [],'FontSize', 12)
-ylabel('Angle RMSE (rad)',FontSize=13)
+ylabel('Angle RMSE (rad)',FontSize=12)
 set(gca, 'YTick', [0.0001 0.001 0.01]);
 ylim([1e-4 1e-2])
 xlim([10^-6 0.1])
+h1_1=plot(nan, nan, '--', 'Color', 'k', 'DisplayName', 'Old framework','LineWidth',1);
+h2_1=plot(nan, nan, 'Color', "k", 'DisplayName', 'New framework','LineWidth',1);
+leg=legend([h1_1 h2_1], 'Location','southeast',FontSize=11);
+title(leg,'Line styles')
 grid on
 
 nexttile
@@ -215,12 +219,13 @@ h3_1=plot(nan, nan, '^', 'Color', "#EDB120", 'DisplayName', 'UKF','LineWidth',1)
 h4_1=plot(nan, nan, 'x', 'Color', "#7E2F8E", 'DisplayName', 'CKF','LineWidth',1);
 h5_1=plot(nan, nan, 'd', 'Color', "#4DBEEE", 'DisplayName', 'IEKF','LineWidth',1);
 set(gca, 'XScale', 'log', 'YScale', 'log','FontSize', 12)
-xlabel('Measurement standard deviations (per unit)',FontSize=13)
-ylabel('Rotor speed RMSE (rad/s)',FontSize=13)
+xlabel('Measurement standard deviations (per unit)',FontSize=12)
+ylabel('Rotor speed RMSE (rad/s)',FontSize=12)
 ylim([1e-2 1e-1])
 xlim([10^-6 0.1])
 %set(gca, 'YTick', [0.001 0.01 0.1 1]);
-legend([h1_1 h2_1 h3_1 h4_1 h5_1], 'Location','southeast',FontSize=11)
+leg=legend([h1_1 h2_1 h3_1 h4_1 h5_1], 'Location','southeast','NumColumns',1,FontSize=11);
+title(leg,'Line colors')
 grid on
 %exportgraphics(f1,'Synchronous-Generator.png','Resolution',900)
 
@@ -238,7 +243,7 @@ grid on
 % h6_2=plot(10.^scale, x1plotIEKF2_2, '-v', 'DisplayName', "IEKF2", 'Color', "#A2142F",'LineWidth',1);
 % h6_1=plot(10.^scale, x1plotIEKF2_1, '--v', 'Color', "#A2142F",'LineWidth',1);
 % set(gca, 'XScale', 'log', 'YScale', 'log', 'XTickLabel', [],'FontSize', 12)
-% ylabel('Angle RMSE (rad)',FontSize=13)
+% ylabel('Angle RMSE (rad)',FontSize=12)
 % set(gca, 'YTick', [0.0001 0.001 0.01]);
 % ylim([1e-4 1e-2])
 % xlim([10^-6 0.1])
@@ -261,8 +266,8 @@ grid on
 % h6_2=plot(10.^scale, x2plotIEKF2_2, '-v', 'DisplayName', "IEKF2", 'Color', "#A2142F",'LineWidth',1);
 % h6_1=plot(10.^scale, x2plotIEKF2_1, '--v', 'Color', "#A2142F",'LineWidth',1);
 % set(gca, 'XScale', 'log', 'YScale', 'log','FontSize', 12)
-% xlabel('Measurement standard deviations (per unit)',FontSize=13)
-% ylabel('Rotor speed RMSE (rad/s)',FontSize=13)
+% xlabel('Measurement standard deviations (per unit)',FontSize=12)
+% ylabel('Rotor speed RMSE (rad/s)',FontSize=12)
 % ylim([1e-2 1e-1])
 % xlim([10^-6 0.1])
 % %set(gca, 'YTick', [0.001 0.01 0.1 1]);

@@ -133,9 +133,12 @@ h4_1=plot(10.^scale, yplotCKF_1, '--x', 'DisplayName', "CKF (old)", 'Color', "#7
 %h6_2=plot(10.^scale, yplotIEKF2_2, '-v', 'DisplayName', "IEKF2", 'Color', "#A2142F",'LineWidth',1);
 %h6_1=plot(10.^scale, yplotIEKF2_1, '--v', 'Color', "#A2142F",'LineWidth',1);
 set(gca, 'XScale', 'log', 'YScale', 'log','FontSize', 12)
-%xlabel('Measurement noise (per unit)',FontSize=13)
-ylabel('Angle RMSE (rad)',FontSize=13)
-%legend([h1_1 h2_1 h3_1 h4_1 h5_1], 'Location','southeast',FontSize=11)
+%xlabel('Measurement noise (per unit)',FontSize=12)
+ylabel('Angle RMSE (rad)',FontSize=12)
+h1_1=plot(nan, nan, '--', 'Color', 'k', 'DisplayName', 'Old framework','LineWidth',1);
+h2_1=plot(nan, nan, 'Color', "k", 'DisplayName', 'New framework','LineWidth',1);
+leg=legend([h1_1 h2_1], 'Location','southeast',FontSize=11);
+title(leg,'Line styles')
 xlim([10^-4 10^1])
 set(gca, 'XTick', [0.0001 0.001 0.01 0.1 1 10]);
 ylim([1e-6 1])
@@ -161,9 +164,10 @@ h3_1=plot(nan, nan, '^', 'Color', "#EDB120", 'DisplayName', 'UKF','LineWidth',1)
 h4_1=plot(nan, nan, 'x', 'Color', "#7E2F8E", 'DisplayName', 'CKF','LineWidth',1);
 h5_1=plot(nan, nan, 'd', 'Color', "#4DBEEE", 'DisplayName', 'IEKF','LineWidth',1);
 set(gca, 'XScale', 'log', 'YScale', 'log','FontSize', 12)
-xlabel('Measurement standard deviation (N)',FontSize=13)
-ylabel('Anglular Speed RMSE (rad/s)',FontSize=13)
-legend([h1_1 h2_1 h3_1 h4_1 h5_1], 'Location','southeast',FontSize=11)
+xlabel('Measurement standard deviation (N)',FontSize=12)
+ylabel('Anglular Speed RMSE (rad/s)',FontSize=12)
+leg=legend([h1_1 h2_1 h3_1 h4_1 h5_1], 'Location','southeast','NumColumns',2,FontSize=11);
+title(leg,'Line colors')
 xlim([10^-4 10^1])
 set(gca, 'XTick', [0.0001 0.001 0.01 0.1 1 10]);
 ylim([1e-6 1])
@@ -184,8 +188,8 @@ grid on
 % h6_2=plot(10.^scale, yplotIEKF2_2, '-v', 'DisplayName', "IEKF2", 'Color', "#A2142F",'LineWidth',1);
 % h6_1=plot(10.^scale, yplotIEKF2_1, '--v', 'Color', "#A2142F",'LineWidth',1);
 % set(gca, 'XScale', 'log', 'YScale', 'log','FontSize', 12)
-% %xlabel('Measurement noise (per unit)',FontSize=13)
-% ylabel('Angle RMSE (rad)',FontSize=13)
+% %xlabel('Measurement noise (per unit)',FontSize=12)
+% ylabel('Angle RMSE (rad)',FontSize=12)
 % %legend([h1_2 h2_2 h3_2 h4_2], 'Location','southeast',FontSize=10)
 % xlim([10^-4 10^1])
 % set(gca, 'XTick', [0.0001 0.001 0.01 0.1 1 10]);
@@ -203,8 +207,8 @@ grid on
 % h6_2=plot(10.^scale, xplotIEKF2_2, '-v', 'DisplayName', "IEKF2", 'Color', "#A2142F",'LineWidth',1);
 % h6_1=plot(10.^scale, xplotIEKF2_1, '--v', 'Color', "#A2142F",'LineWidth',1);
 % set(gca, 'XScale', 'log', 'YScale', 'log','FontSize', 12)
-% xlabel('Measurement standard deviation (N)',FontSize=13)
-% ylabel('Anglular Speed RMSE (rad/s)',FontSize=13)
+% xlabel('Measurement standard deviation (N)',FontSize=12)
+% ylabel('Anglular Speed RMSE (rad/s)',FontSize=12)
 % legend([h1_2 h2_2 h5_2 h6_2], 'Location','southeast',FontSize=12)
 % xlim([10^-4 10^1])
 % set(gca, 'XTick', [0.0001 0.001 0.01 0.1 1 10]);

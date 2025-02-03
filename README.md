@@ -5,3 +5,5 @@ This is the code for the research paper with the same title https://arxiv.org/ab
 Running these codes allows you to reproduce all the figures in the paper.
 
 The five files correspond to five different use cases.
+
+update 02/04/2025: In UKF and CKF, sqrtm(Variance) is now replaced by chol(Variance).', making the algorithm faster.

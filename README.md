@@ -6,4 +6,4 @@ Running these codes allows you to reproduce all the figures in the paper.
 
 The five files correspond to five different use cases.
 
-update 02/04/2025: In UKF and CKF, sqrtm(Variance) is now replaced by chol(Variance).', making the algorithm faster.
+02/04/2025 update: In UKF and CKF, sqrtm(Variance) is now replaced by chol(Variance).', making the algorithm faster.

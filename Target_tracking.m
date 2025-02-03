@@ -189,7 +189,7 @@ end
 disp(['EKF average runtime (old framework): ',sprintf('%.2f', 1000*mean(Time_EKF_1)), ' ms'])
 disp(['EKF average runtime (new framework): ',sprintf('%.2f', 1000*mean(Time_EKF_2)), ' ms'])
 disp(['IEKF average runtime (old framework): ',sprintf('%.2f', 1000*mean(Time_IEKF_1)), ' ms'])
-%disp(['IEKF average runtime (new framework): ',sprintf('%.2f', 1000*mean(Time_IEKF_2)), ' ms'])
+disp(['IEKF average runtime (new framework): ',sprintf('%.2f', 1000*mean(Time_IEKF_2)), ' ms'])
 disp(['EKF2 average runtime (old framework): ',sprintf('%.2f', 1000*mean(Time_EKF2_1)), ' ms'])
 disp(['EKF2 average runtime (new framework): ',sprintf('%.2f', 1000*mean(Time_EKF2_2)), ' ms'])
 %disp(['IEKF2 average runtime (old framework): ',sprintf('%.2f', 1000*mean(Time_IEKF2_1)), ' ms'])
@@ -211,7 +211,7 @@ h3_1=plot(10.^scale, xplotUKF_1, '--^', 'DisplayName', 'UKF (old)', 'Color', "#E
 h4_2=plot(10.^scale, xplotCKF_2, '-x', 'DisplayName', "CKF", 'Color', "#7E2F8E",'LineWidth',1);
 h4_1=plot(10.^scale, xplotCKF_1, '--x', 'DisplayName', 'CKF (old)', 'Color', "#7E2F8E",'LineWidth',1);
 %h5_2=plot(10.^scale, xplotIEKF_2, '-d', 'DisplayName', 'IEKF', 'Color', "#4DBEEE",'LineWidth',1);
-h5_1=plot(10.^scale, xplotIEKF_1, '--d', 'DisplayName', 'IEKF', 'Color', "#4DBEEE",'LineWidth',1);
+h5_1=plot(10.^scale, xplotIEKF_1, '--d', 'DisplayName', 'IEKF (old)', 'Color', "#4DBEEE",'LineWidth',1);
 %h6_2=plot(10.^scale, xplotIEKF2_2, '-v', 'DisplayName', "IEKF2", 'Color', "#A2142F",'LineWidth',1);
 %h6_1=plot(10.^scale, xplotIEKF2_1, '--v', 'Color', "#A2142F",'LineWidth',1);
 set(gca, 'XScale', 'log', 'YScale', 'log', 'XTickLabel', [],'FontSize', 12)
@@ -236,8 +236,8 @@ h3_2=plot(10.^scale, vxplotUKF_2, '-^', 'DisplayName', 'UKF (new)', 'Color', "#E
 h3_1=plot(10.^scale, vxplotUKF_1, '--^', 'Color', "#EDB120",'LineWidth',1);
 h4_2=plot(10.^scale, vxplotCKF_2, '-x', 'DisplayName', 'CKF (new)', 'Color', "#7E2F8E",'LineWidth',1);
 h4_1=plot(10.^scale, vxplotCKF_1, '--x', 'Color', "#7E2F8E",'LineWidth',1);
-%h5_2=plot(10.^scale, vxplotIEKF_2, '-d', 'DisplayName', 'IEKF', 'Color', "#4DBEEE",'LineWidth',1);
-h5_1=plot(10.^scale, vxplotIEKF_1, '--d', 'DisplayName', 'IEKF (new)', 'Color', "#4DBEEE",'LineWidth',1);
+%h5_2=plot(10.^scale, vxplotIEKF_2, '-d', 'DisplayName', 'IEKF (new)', 'Color', "#4DBEEE",'LineWidth',1);
+h5_1=plot(10.^scale, vxplotIEKF_1, '--d', 'Color', "#4DBEEE",'LineWidth',1);
 %h6_2=plot(10.^scale, vxplotIEKF2_2, '-v', 'DisplayName', "IEKF2", 'Color', "#A2142F",'LineWidth',1);
 %h6_1=plot(10.^scale, vxplotIEKF2_1, '--v', 'Color', "#A2142F",'LineWidth',1);
 h1_1=plot(nan, nan, 'o', 'Color', '#0072BD', 'DisplayName', 'EKF','LineWidth',1);
@@ -255,7 +255,7 @@ set(gca, 'YTick', [0.0001 0.001 0.01 0.1 1 10]);
 leg=legend([h1_1 h2_1 h3_1 h4_1 h5_1], 'Location','southeast','NumColumns',2,FontSize=11);
 title(leg,'Line colors')
 grid on
-%exportgraphics(f1,'3D-tracking.png','Resolution',900)
+%exportgraphics(f1,'3D-tracking2.png','Resolution',900)
 %%
 figure 
 f4=tiledlayout(2,1,'TileSpacing','Compact','Padding','Compact');
@@ -269,7 +269,8 @@ h3_2=plot(0:1:len-1, x_UKF_2, '-^', 'DisplayName', "UKF", 'Color', "#EDB120",'Li
 h3_1=plot(0:1:len-1, x_UKF_1, '--^', 'DisplayName', 'UKF (old)', 'Color', "#EDB120",'LineWidth',1);
 h4_2=plot(0:1:len-1, x_CKF_2, '-x', 'DisplayName', "CKF", 'Color', "#7E2F8E",'LineWidth',1);
 h4_1=plot(0:1:len-1, x_CKF_1, '--x', 'DisplayName', 'CKF (old)', 'Color', "#7E2F8E",'LineWidth',1);
-h5_1=plot(0:1:len-1, x_IEKF_1, '--d', 'DisplayName', 'IEKF', 'Color', "#4DBEEE",'LineWidth',1);
+%h5_2=plot(0:1:len-1, x_IEKF_2, '-d', 'DisplayName', 'IEKF', 'Color', "#4DBEEE",'LineWidth',1);
+h5_1=plot(0:1:len-1, x_IEKF_1, '--d', 'DisplayName', 'IEKF (old)', 'Color', "#4DBEEE",'LineWidth',1);
 set(gca, 'YScale', 'log', 'XTickLabel', [],'FontSize', 12)
 ylabel('X-axis position RMSE (m)',FontSize=12)
 ylim([10^-3 25])
@@ -290,7 +291,8 @@ h3_2=plot(0:1:len-1, y_UKF_2, '-^', 'DisplayName', 'UKF (new)', 'Color', "#EDB12
 h3_1=plot(0:1:len-1, y_UKF_1, '--^', 'Color', "#EDB120",'LineWidth',1);
 h4_2=plot(0:1:len-1, y_CKF_2, '-x', 'DisplayName', 'CKF (new)', 'Color', "#7E2F8E",'LineWidth',1);
 h4_1=plot(0:1:len-1, y_CKF_1, '--x', 'Color', "#7E2F8E",'LineWidth',1);
-h5_1=plot(0:1:len-1, y_IEKF_1, '--d', 'DisplayName', 'IEKF (new)', 'Color', "#4DBEEE",'LineWidth',1);
+%h5_2=plot(0:1:len-1, y_IEKF_2, '-d', 'DisplayName', 'IEKF (new)', 'Color', "#4DBEEE",'LineWidth',1);
+h5_1=plot(0:1:len-1, y_IEKF_1, '--d', 'Color', "#4DBEEE",'LineWidth',1);
 h1_1=plot(nan, nan, 'o', 'Color', '#0072BD', 'DisplayName', 'EKF','LineWidth',1);
 h2_1=plot(nan, nan, 's', 'Color', "#D95319", 'DisplayName', 'EKF2','LineWidth',1);
 h3_1=plot(nan, nan, '^', 'Color', "#EDB120", 'DisplayName', 'UKF','LineWidth',1);
@@ -353,7 +355,7 @@ figure
 f2=tiledlayout(2,1,'TileSpacing','Compact','Padding','Compact');
 nexttile
 hold on
-title("Old framework")
+title("Old framework", 'FontWeight', 'normal')
 h1_2=plot(10.^scale, xplotEKF_1, '-o', 'DisplayName', "EKF", 'Color', '#0072BD','LineWidth',1);
 h1_1=plot(10.^scale, xerrorplotEKF_1, '--o', 'DisplayName', "EKF", 'Color', '#0072BD','LineWidth',1);
 h2_2=plot(10.^scale, xplotEKF2_1, '-s', 'DisplayName', "EKF2", 'Color', "#D95319",'LineWidth',1);
@@ -362,7 +364,7 @@ h3_2=plot(10.^scale, xplotUKF_1, '-^', 'DisplayName', "UKF", 'Color', "#EDB120",
 h3_1=plot(10.^scale, xerrorplotUKF_1, '--^', 'DisplayName', "UKF", 'Color', "#EDB120",'LineWidth',1);
 h4_2=plot(10.^scale, xplotCKF_1, '-x', 'DisplayName', "CKF", 'Color', "#7E2F8E",'LineWidth',1);
 h4_1=plot(10.^scale, xerrorplotCKF_1, '--x', 'DisplayName', "CKF", 'Color', "#7E2F8E",'LineWidth',1);
-h5_2=plot(10.^scale, xplotIEKF_1, '-d', 'DisplayName', "IEKF", 'Color', "#4DBEEE",'LineWidth',1);
+%h5_2=plot(10.^scale, xplotIEKF_1, '-d', 'DisplayName', "IEKF", 'Color', "#4DBEEE",'LineWidth',1);
 h5_1=plot(10.^scale, xerrorplotIEKF_1, '--d', 'DisplayName', "IEKF", 'Color', "#4DBEEE",'LineWidth',1);
 %h6_2=plot(10.^scale, xplotIEKF2_1, '-v', 'DisplayName', "IEKF2", 'Color', "#A2142F",'LineWidth',1);
 %h6_1=plot(10.^scale, xerrorplotIEKF2_1, '--v', 'Color', "#A2142F",'LineWidth',1);
@@ -380,7 +382,7 @@ title(leg,'Line styles')
 grid on
 nexttile
 hold on
-title("New framework")
+title("New framework", 'FontWeight', 'normal')
 h1_2=plot(10.^scale, xplotEKF_2, '-o', 'DisplayName', "EKF", 'Color', '#0072BD','LineWidth',1);
 h1_1=plot(10.^scale, xerrorplotEKF_2, '--o', 'DisplayName', "EKF", 'Color', '#0072BD','LineWidth',1);
 h2_2=plot(10.^scale, xplotEKF2_2, '-s', 'DisplayName', "EKF2", 'Color', "#D95319",'LineWidth',1);
@@ -608,7 +610,7 @@ for m = 1:1:M
                 P = (eye(6) - K*H)*P;
             end
         elseif(KFtype==1)
-            L=real(sqrtm(P));
+            L=chol(P).';
             state=x_est(:,k-1);
             n=6;
             lambda=(1e-6-1)*n;
@@ -663,14 +665,18 @@ for m = 1:1:M
             K=Pxy/Py;
             %update
             state0=state;
-            state=state+K*(z-m_exp);
+            dstate=K*(z-m_exp);
+            state=state+dstate;
             if(improvement==1)
-                L=real(sqrtm(P));
-                states=zeros(n,n*2+1);
-                states(:,1)=state;
-                for i=1:n
-                    states(:,1+i)=state+sqrt(lambda+n)*L(:,i);
-                    states(:,n+i+1)=state-sqrt(lambda+n)*L(:,i);
+%                 L=chol(P).';
+%                 states=zeros(n,n*2+1);
+%                 states(:,1)=state;
+%                 for i=1:n
+%                     states(:,1+i)=state+sqrt(lambda+n)*L(:,i);
+%                     states(:,n+i+1)=state-sqrt(lambda+n)*L(:,i);
+%                 end
+                for i=1:2*n+1
+                    states(:,i)=states(:,i)+dstate;
                 end
                 measures=zeros(mnum,2*n+1);
                 for i=1:2*n+1
@@ -703,7 +709,7 @@ for m = 1:1:M
             x_est(:,k)=state;
         elseif(KFtype==2)
             %CKF
-            L=real(sqrtm(P));
+            L=chol(P).';
             state=x_est(:,k-1);
             n=6;
             mnum=2;
@@ -728,7 +734,7 @@ for m = 1:1:M
 
             z = z_true + normrnd(0, sig_mea_true); % erroneous measurement
             %update sigma points
-            L=real(sqrtm(P));
+            L=chol(P).';
             states=zeros(n,n*2);
             for i=1:n
                 states(:,i)=state+sqrt(n)*L(:,i);

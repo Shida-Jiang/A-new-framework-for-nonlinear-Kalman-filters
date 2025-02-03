@@ -140,7 +140,7 @@ h2_1=plot(nan, nan, 'Color', "k", 'DisplayName', 'New framework','LineWidth',1);
 leg=legend([h1_1 h2_1], 'Location','southeast',FontSize=11);
 title(leg,'Line styles')
 xlim([10^-4 10^1])
-set(gca, 'XTick', [0.0001 0.001 0.01 0.1 1 10]);
+set(gca, 'XTickLabel', []);
 ylim([1e-6 1])
 set(gca, 'YTick', [1e-6 1e-4 1e-2 1]);
 grid on
@@ -321,7 +321,7 @@ for iii=1:repeat
             end
             states_est(:,i+1)=states;
         elseif(KF_type==1)
-            L=real(sqrtm(Variance));
+            L=chol(Variance).';
             state=states_est(:,i);
             n=2;
             lambda=(1e-6-1)*n;
@@ -369,14 +369,18 @@ for iii=1:repeat
             K=Pxy/Py;
             %update
             state0=state;
-            state=state+K*(z-m_exp);
+            dstate=K*(z-m_exp);
+            state=state+dstate;
             if(improvement1==1)
-                L=real(sqrtm(Variance));
-                states=zeros(n,n*2+1);
-                states(:,1)=state;
-                for ii=1:n
-                    states(:,1+ii)=state+sqrt(lambda+n)*L(:,ii);
-                    states(:,n+ii+1)=state-sqrt(lambda+n)*L(:,ii);
+%                 L=chol(Variance).';
+%                 states=zeros(n,n*2+1);
+%                 states(:,1)=state;
+%                 for ii=1:n
+%                     states(:,1+ii)=state+sqrt(lambda+n)*L(:,ii);
+%                     states(:,n+ii+1)=state-sqrt(lambda+n)*L(:,ii);
+%                 end
+                for ii=1:2*n+1
+                    states(:,ii)=states(:,ii)+dstate;
                 end
                 measures=zeros(mnum,2*n+1);
                 for ii=1:2*n+1
@@ -406,7 +410,7 @@ for iii=1:repeat
             states_est(:,i+1)=state;
         elseif(KF_type==2)
             %CKF
-            L=real(sqrtm(Variance));
+            L=chol(Variance).';
             state=states_est(:,i);
             n=2;
             mnum=1;
@@ -427,7 +431,7 @@ for iii=1:repeat
             % obtain measurement
             z = Measurements_noisy(:,i+1);
             % Predict Measurement From Propagated Sigma Points
-            L=real(sqrtm(Variance));
+            L=chol(Variance).';
             states=zeros(n,n*2);
             for ii=1:n
                 states(:,ii)=state+sqrt(n)*L(:,ii);

@@ -177,7 +177,7 @@ grid on
 ylim([0.1 12])
 set(gca, 'YTick', [0.01 0.1 1 10]);
 xlim([10^-5 1])
-exportgraphics(f1,'SOC-SOH.png','Resolution',900)
+%exportgraphics(f1,'SOC-SOH.png','Resolution',900)
 %%
 % figure
 % f2=tiledlayout(2,1,'TileSpacing','Compact','Padding','Compact');
@@ -363,7 +363,7 @@ for iii=1:repeat
             end
             states_est(:,i+1)=states;
         elseif(KFtype==1)
-            L=real(sqrtm(Variance));
+            L=chol(Variance).';
             state=states_est(:,i);
             n=3;
             lambda=(1e-6-1)*n;
@@ -416,14 +416,18 @@ for iii=1:repeat
             K=Pxy/Py;
             %update
             state0=state;
-            state=state+K*(z-m_exp);
+            dstate=K*(z-m_exp);
+            state=state+dstate;
             if(improvement1==1)
-                L=real(sqrtm(Variance));
-                states=zeros(n,n*2+1);
-                states(:,1)=state;
-                for ii=1:n
-                    states(:,1+ii)=state+sqrt(lambda+n)*L(:,ii);
-                    states(:,n+ii+1)=state-sqrt(lambda+n)*L(:,ii);
+%                 L=chol(Variance).';
+%                 states=zeros(n,n*2+1);
+%                 states(:,1)=state;
+%                 for ii=1:n
+%                     states(:,1+ii)=state+sqrt(lambda+n)*L(:,ii);
+%                     states(:,n+ii+1)=state-sqrt(lambda+n)*L(:,ii);
+%                 end
+                for ii=1:2*n+1
+                    states(:,ii)=states(:,ii)+dstate;
                 end
                 measures=zeros(mnum,2*n+1);
                 for ii=1:2*n+1
@@ -454,7 +458,7 @@ for iii=1:repeat
             states_est(:,i+1)=state;   
         elseif(KFtype==2)
             %CKF
-            L=real(sqrtm(Variance));
+            L=chol(Variance).';
             state=states_est(:,i);
             n=3;
             mnum=1;
@@ -479,7 +483,7 @@ for iii=1:repeat
             % obtain measurement
             z = Measurements_noisy(:,i+1);
             % Predict Measurement From Propagated Sigma Points
-            L=real(sqrtm(Variance));
+            L=chol(Variance).';
             states=zeros(n,n*2);
             for ii=1:n
                 states(:,ii)=state+sqrt(n)*L(:,ii);

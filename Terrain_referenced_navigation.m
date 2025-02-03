@@ -209,7 +209,7 @@ ylim([0.1 1000])
 xlim([10^-1 10^4])
 set(gca, 'YTick', [0.1 1 10 100 1000]);
 grid on
-exportgraphics(f1,'Terrain-referenced-navigation.png','Resolution',900)
+%exportgraphics(f1,'Terrain-referenced-navigation.png','Resolution',900)
 
 %%
 % figure
@@ -420,7 +420,7 @@ for m = 1:1:M
                 P = (eye(2) - K*H)*P;
             end
         elseif(KFtype==1)
-            L=real(sqrtm(P));
+            L=chol(P).';
             state=x_est(:,k-1);
             n=2;
             lambda=(1e-6-1)*n;
@@ -466,14 +466,18 @@ for m = 1:1:M
             K=Pxy/Py;
             %update
             state0=state;
-            state=state+K*(z-m_exp);
+            dstate=K*(z-m_exp);
+            state=state+dstate;
             if(improvement==1)
-                L=real(sqrtm(P));
-                states=zeros(n,n*2+1);
-                states(:,1)=state;
-                for i=1:n
-                    states(:,1+i)=state+sqrt(lambda+n)*L(:,i);
-                    states(:,n+i+1)=state-sqrt(lambda+n)*L(:,i);
+%                 L=chol(P).';
+%                 states=zeros(n,n*2+1);
+%                 states(:,1)=state;
+%                 for i=1:n
+%                     states(:,1+i)=state+sqrt(lambda+n)*L(:,i);
+%                     states(:,n+i+1)=state-sqrt(lambda+n)*L(:,i);
+%                 end
+                for i=1:2*n+1
+                    states(:,i)=states(:,i)+dstate;
                 end
                 measures=zeros(mnum,2*n+1);
                 for i=1:2*n+1
@@ -503,7 +507,7 @@ for m = 1:1:M
             x_est(:,k)=state;
             elseif(KFtype==2)
             %CKF
-            L=real(sqrtm(P));
+            L=chol(P).';
             state=x_est(:,k-1);
             n=2;
             mnum=1;
@@ -522,7 +526,7 @@ for m = 1:1:M
                 P=P+(state-states(:,i))*(state-states(:,i)).'/n/2;
             end
             %update sigma points
-            L=real(sqrtm(P));
+            L=chol(P).';
             states=zeros(n,n*2);
             for i=1:n
                 states(:,i)=state+sqrt(n)*L(:,i);

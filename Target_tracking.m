@@ -642,6 +642,12 @@ for m = 1:1:M
 
             z = z_true + normrnd(0, sig_mea_true); % erroneous measurement
             % Predict Measurement From Propagated Sigma Points
+            L=chol(P).';
+            states(:,1)=state;
+            for i=1:n
+                states(:,1+i)=state+sqrt(lambda+n)*L(:,i);
+                states(:,n+i+1)=state-sqrt(lambda+n)*L(:,i);  
+            end
             measures=zeros(mnum,2*n+1);
             for i=1:2*n+1
                 pp2 = states(1:3,i) - p_sensor(:,k); % predicted relative position

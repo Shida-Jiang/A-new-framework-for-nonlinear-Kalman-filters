@@ -446,6 +446,12 @@ for m = 1:1:M
                 P=P+(state-states(:,i))*(state-states(:,i)).'/(n+lambda)/2;
             end
             % Predict Measurement From Propagated Sigma Points
+            L=chol(P).';
+            states(:,1)=state;
+            for i=1:n
+                states(:,1+i)=state+sqrt(lambda+n)*L(:,i);
+                states(:,n+i+1)=state-sqrt(lambda+n)*L(:,i);  
+            end
             measures=zeros(mnum,2*n+1);
             for i=1:2*n+1
                 measures(:,i)=height(states(1,i), states(2,i));

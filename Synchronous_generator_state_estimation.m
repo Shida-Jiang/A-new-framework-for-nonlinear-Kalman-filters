@@ -437,6 +437,13 @@ for iii=1:repeat
             % obtain measurement
             z = Measurements_noisy(:,i+1);
             % Predict Measurement From Propagated Sigma Points
+            L=chol(Variance).';
+            states=zeros(n,n*2+1);
+            states(:,1)=state;
+            for ii=1:n
+                states(:,1+ii)=state+sqrt(lambda+n)*L(:,ii);
+                states(:,n+ii+1)=state-sqrt(lambda+n)*L(:,ii);  
+            end
             measures=zeros(mnum,2*n+1);
             for ii=1:2*n+1
                 measures(:,ii) = (v(3,i)/x_d_dot*states(3,ii)*sin(states(1,ii))+v(3,i)^2/2*(1/x_q-1/x_d_dot)*sin(2*states(1,ii))); % predicted measurement

@@ -7,3 +7,5 @@ Running these codes allows you to reproduce all the figures in the paper.
 The five files correspond to five different use cases.
 
 02/04/2025 update: In UKF and CKF, sqrtm(Variance) is now replaced by chol(Variance).', making the algorithm faster.
+
+11/25/2025 update: We conducted additional experiments to validate the need for the "back out" step. The related codes can be found in the folder entitled "Necessity_of_back_out." Additionally, the newly uploaded "Target_tracking_ANEE.m" compares the accuracy of covariance estimation between the old and new frameworks.

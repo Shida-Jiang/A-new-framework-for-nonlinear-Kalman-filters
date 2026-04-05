@@ -1,6 +1,6 @@
 # Mitigating Overconfidence in Nonlinear Kalman Filters via Covariance Recalibration
 
-This is the code for the research paper with the same title https://arxiv.org/abs/2407.05717. The paper has been provisionally accepted by Automatica. In the paper, we introduced a new covariance-recalibrated framework that can reduce the estimation errors of all types of nonlinear Kalman filters by more than an order of magnitude. The nonlinear Kalman filters investigated in the paper include the extended Kalman filter, second-order extended Kalman filter, unscented Kalman filter, and cubature Kalman filter.
+This is the code for the research paper with the same title https://arxiv.org/abs/2407.05717. The paper has been provisionally accepted by Automatica. In the paper, we introduced a new covariance-recalibrated framework that can reduce the state estimation errors of various types of nonlinear Kalman filters by more than an order of magnitude. The nonlinear Kalman filters investigated in the paper include the extended Kalman filter, second-order extended Kalman filter, unscented Kalman filter, and cubature Kalman filter.
 
 Running these codes allows you to reproduce all the figures in the paper.
 

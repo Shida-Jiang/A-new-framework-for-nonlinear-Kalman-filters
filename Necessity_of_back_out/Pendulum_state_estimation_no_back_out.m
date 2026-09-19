@@ -146,7 +146,7 @@ h3_1=plot(nan, nan, '^', 'Color', "#EDB120", 'DisplayName', 'UKF','LineWidth',1)
 h4_1=plot(nan, nan, 'x', 'Color', "#7E2F8E", 'DisplayName', 'CKF','LineWidth',1);
 set(gca, 'XScale', 'log', 'YScale', 'log','FontSize', 12)
 xlabel('Measurement standard deviation (N)',FontSize=12)
-ylabel('Anglular Speed RMSE (rad/s)',FontSize=12)
+ylabel('Angular Speed RMSE (rad/s)',FontSize=12)
 leg=legend([h1_1 h2_1 h3_1 h4_1], 'Location','southeast','NumColumns',2,FontSize=11);
 title(leg,'Line colors')
 xlim([10^-4 10^1])

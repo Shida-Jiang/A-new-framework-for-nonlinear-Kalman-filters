@@ -201,18 +201,18 @@ grid on
 
 nexttile
 hold on
-h1_2=plot(10.^scale, x2plotEKF_2, '-o', 'DisplayName', "EKF (new)", 'Color', '#0072BD','LineWidth',1);
-h1_1=plot(10.^scale, x2plotEKF_1, '--o', 'Color', '#0072BD','LineWidth',1);
-h2_2=plot(10.^scale, x2plotEKF2_2, '-s', 'DisplayName', "EKF2 (new)", 'Color', "#D95319",'LineWidth',1);
-h2_1=plot(10.^scale, x2plotEKF2_1, '--s', 'Color', "#D95319",'LineWidth',1);
-h3_2=plot(10.^scale, x2plotUKF_2, '-^', 'DisplayName', "UKF (new)", 'Color', "#EDB120",'LineWidth',1);
-h3_1=plot(10.^scale, x2plotUKF_1, '--^', 'Color', "#EDB120",'LineWidth',1);
-h4_2=plot(10.^scale, x2plotCKF_2, '-x', 'DisplayName', "CKF (new)", 'Color', "#7E2F8E",'LineWidth',1);
-h4_1=plot(10.^scale, x2plotCKF_1, '--x', 'Color', "#7E2F8E",'LineWidth',1);
-%h5_2=plot(10.^scale, x2plotIEKF_2, '-d', 'DisplayName', "IEKF", 'Color', '#4DBEEE','LineWidth',1);
-h5_1=plot(10.^scale, x2plotIEKF_1, '--d', 'Color', '#4DBEEE','LineWidth',1);
-%h6_2=plot(10.^scale, x2plotIEKF2_2, '-v', 'DisplayName', "IEKF2", 'Color', "#A2142F",'LineWidth',1);
-%h6_1=plot(10.^scale, x2plotIEKF2_1, '--v', 'Color', "#A2142F",'LineWidth',1);
+h1_2=plot(10.^scale, x2plotEKF_2*(2*pi*60), '-o', 'DisplayName', "EKF (new)", 'Color', '#0072BD','LineWidth',1);
+h1_1=plot(10.^scale, x2plotEKF_1*(2*pi*60), '--o', 'Color', '#0072BD','LineWidth',1);
+h2_2=plot(10.^scale, x2plotEKF2_2*(2*pi*60), '-s', 'DisplayName', "EKF2 (new)", 'Color', "#D95319",'LineWidth',1);
+h2_1=plot(10.^scale, x2plotEKF2_1*(2*pi*60), '--s', 'Color', "#D95319",'LineWidth',1);
+h3_2=plot(10.^scale, x2plotUKF_2*(2*pi*60), '-^', 'DisplayName', "UKF (new)", 'Color', "#EDB120",'LineWidth',1);
+h3_1=plot(10.^scale, x2plotUKF_1*(2*pi*60), '--^', 'Color', "#EDB120",'LineWidth',1);
+h4_2=plot(10.^scale, x2plotCKF_2*(2*pi*60), '-x', 'DisplayName', "CKF (new)", 'Color', "#7E2F8E",'LineWidth',1);
+h4_1=plot(10.^scale, x2plotCKF_1*(2*pi*60), '--x', 'Color', "#7E2F8E",'LineWidth',1);
+%h5_2=plot(10.^scale, x2plotIEKF_2*(2*pi*60), '-d', 'DisplayName', "IEKF", 'Color', '#4DBEEE','LineWidth',1);
+h5_1=plot(10.^scale, x2plotIEKF_1*(2*pi*60), '--d', 'Color', '#4DBEEE','LineWidth',1);
+%h6_2=plot(10.^scale, x2plotIEKF2_2*(2*pi*60), '-v', 'DisplayName', "IEKF2", 'Color', "#A2142F",'LineWidth',1);
+%h6_1=plot(10.^scale, x2plotIEKF2_1*(2*pi*60), '--v', 'Color', "#A2142F",'LineWidth',1);
 h1_1=plot(nan, nan, 'o', 'Color', '#0072BD', 'DisplayName', 'EKF','LineWidth',1);
 h2_1=plot(nan, nan, 's', 'Color', "#D95319", 'DisplayName', 'EKF2','LineWidth',1);
 h3_1=plot(nan, nan, '^', 'Color', "#EDB120", 'DisplayName', 'UKF','LineWidth',1);
@@ -221,13 +221,13 @@ h5_1=plot(nan, nan, 'd', 'Color', "#4DBEEE", 'DisplayName', 'IEKF','LineWidth',1
 set(gca, 'XScale', 'log', 'YScale', 'log','FontSize', 12)
 xlabel('Measurement standard deviations (per unit)',FontSize=12)
 ylabel('Rotor speed RMSE (rad/s)',FontSize=12)
-ylim([0.8*1e-5 1e-4])
+ylim([0.8e-5 1e-4]*(2*pi*60))
 xlim([10^-6 0.1])
 %set(gca, 'YTick', [0.001 0.01 0.1 1]);
 leg=legend([h1_1 h2_1 h3_1 h4_1 h5_1], 'Location','northeast','NumColumns',1,FontSize=11);
 title(leg,'Line colors')
 grid on
-%exportgraphics(f1,'Synchronous-Generator.png','Resolution',900)
+exportgraphics(f1,'Synchronous-Generator.png','Resolution',900)
 
 % %%
 % figure

@@ -204,10 +204,10 @@ h4_1=plot(nan, nan, 'x', 'Color', "#7E2F8E", 'DisplayName', 'CKF','LineWidth',1)
 set(gca, 'XScale', 'log', 'YScale', 'log','FontSize', 12)
 xlabel('Measurement standard deviations (per unit)',FontSize=12)
 ylabel('Rotor speed RMSE (rad/s)',FontSize=12)
-ylim([1e-2 1e-1])
+ylim([0.8*1e-5 1e-4])
 xlim([10^-6 0.1])
 %set(gca, 'YTick', [0.001 0.01 0.1 1]);
-leg=legend([h1_1 h2_1 h3_1 h4_1], 'Location','southeast','NumColumns',1,FontSize=11);
+leg=legend([h1_1 h2_1 h3_1 h4_1], 'Location','northeast','NumColumns',1,FontSize=11);
 title(leg,'Line colors')
 grid on
 exportgraphics(f1,'Synchronous-Generator_no_backout.png','Resolution',900)
@@ -735,6 +735,6 @@ for iii=1:repeat
     x3_rmse=x3_rmse+(states_true(3,length(x))-states_est(3,length(x)))^2/repeat; 
 end
 x1_rmse=sqrt(x1_rmse);
-x2_rmse=sqrt(x1_rmse);
-x3_rmse=sqrt(x1_rmse);
+x2_rmse=sqrt(x2_rmse);
+x3_rmse=sqrt(x3_rmse);
 end

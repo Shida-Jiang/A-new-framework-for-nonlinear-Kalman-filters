@@ -1,6 +1,6 @@
 # Mitigating Overconfidence in Nonlinear Kalman Filters via Covariance Recalibration
 
-This is the code for the research paper with the same title, accepted for publication in *Automatica* in 2026. A preprint is available at <https://arxiv.org/abs/2407.05717>.
+This repository contains the code for the paper published in [*Automatica* 194 (2026), 113295](https://doi.org/10.1016/j.automatica.2026.113295). A [preprint is available on arXiv](https://arxiv.org/abs/2407.05717).
 
 In the paper, we introduce a new covariance-recalibrated framework that can reduce the state estimation errors of various types of nonlinear Kalman filters by more than an order of magnitude. The nonlinear Kalman filters investigated in the paper include the extended Kalman filter, second-order extended Kalman filter, unscented Kalman filter, and cubature Kalman filter.
 
@@ -35,6 +35,13 @@ The iterated EKF2 (IEKF2) is implemented and simulated in the scripts, but its c
   title={Mitigating Overconfidence in Nonlinear {K}alman Filters via Covariance Recalibration},
   author={Jiang, Shida and Shi, Junzhe and Moura, Scott},
   journal={Automatica},
-  year={2026}
+  volume={194},
+  pages={113295},
+  year={2026},
+  doi={10.1016/j.automatica.2026.113295}
 }
 ```
+
+## Related work
+
+Our follow-up paper, [Probe Sets for Nonlinear Kalman Filtering: Multi-Center Gains and Covariance Recalibration](https://arxiv.org/abs/2609.14271), uses covariance-scaled probe sets to account for local model variation in both gain selection and covariance recalibration.
